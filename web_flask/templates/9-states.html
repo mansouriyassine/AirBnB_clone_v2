@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HBNB - States</title>
+</head>
+<body>
+    {% if not state_id %}
+        <h1>All States</h1>
+        <ul>
+            {% for state in states.values() | sort(attribute='name') %}
+                <li>{{ state.id }}: <strong>{{ state.name }}</strong></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% if states[state_id] %}
+            <h1>State Details</h1>
+            <h3>State: {{ states[state_id].name }}</h3>
+            <h3>Cities in State:</h3>
+            <ul>
+                {% for city in states[state_id].cities | sort(attribute='name') %}
+                    <li>{{ city.id }}: <strong>{{ city.name }}</strong></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h1>State Not Found</h1>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
